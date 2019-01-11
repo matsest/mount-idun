@@ -16,13 +16,16 @@ Default samba server:
 
 ## Usage
 
-    # Mount
+### Mount
+
     mount-idun.sh
-    
-    # Unmount
+   
+### Unmount
+ 
     mount-idun.sh -u
-    
-    # Display help
+   
+### Display help
+ 
     mount-idun.sh -h
 
 ## Limitations
