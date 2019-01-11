@@ -10,6 +10,10 @@ Default mount points:
 * `/tmp/hpc-work` (lustre share)
 * `/tmp/hpc-home` (home directory)
 
+Default samba server:
+
+* idun-samba1.hpc.ntnu.no
+
 ## Usage
 
 ### Mount
