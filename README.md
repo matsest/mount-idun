@@ -3,7 +3,7 @@
 > Mount home and work directories from the samba share at [Idun HPC cluster](https://www.hpc.ntnu.no/display/hpc/Idun+Cluster) at NTNU.
 
 This script mounts the home and work directories from Idun to your (Linux) computer, to allow for downloading and uploading your files (as an alternative to scp/sftp).
-To change mount points or samba server, please change the configuration variables in the script.
+To change permissions, mount points or samba server, please change the configuration variables in the script.
 
 Default mount points:
 
@@ -13,6 +13,12 @@ Default mount points:
 Default samba server:
 
 * `idun-samba1.hpc.ntnu.no`(see up-to-date information on the samba share [here](https://www.hpc.ntnu.no/display/hpc/Transferring+Data))
+
+Default user/group: (check your id's with `id`)
+
+* uid: 1000
+* gid: 1000
+
 
 ## Usage
 

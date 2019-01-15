@@ -3,6 +3,8 @@
 # Distributed under the MIT software license: https://opensource.org/licenses/MIT
 
 # configuration variables
+uid=1000                       # user id for user to get r/w permissions to mount
+gid=1000                       # group id for user to get r/w permissions to mount
 workdir=/tmp/hpc-work          # mount point for work dir (lustre share on idun)
 homedir=/tmp/hpc-home          # mount point for home dir (home dir on idun)
 server=idun-samba1.hpc.ntnu.no # samba server
@@ -15,8 +17,8 @@ if [ -n "$1" -a ! "$1" = "-u" ]; then
     echo
     echo Description:
     echo '     This script mounts the home and work directories from Idun to your computer.'
-    echo '     To change mount points or samba server, please change the configuration '
-    echo '     variables in the script.'
+    echo '     To change permissions, mount points or samba server, please change the'
+    echo '     configuration variables in the script.'
     echo 
     echo '     You need to be at NTNU campus or use VPN to mount the shares.'
     echo 
@@ -56,7 +58,6 @@ echo
 
 # mount
 echo "Mounting work directory: $workdir"
-mount.cifs "//$server/work" $workdir -o username=$user,domain=WIN-NTNU-NO,password=$pw
+mount.cifs "//$server/work" $workdir -w -o username=$user,domain=WIN-NTNU-NO,password=$pw,uid=$uid,gid=$gid
 echo "Mounting home directory: $homedir"
-mount.cifs "//$server/$user" $homedir -o username=$user,domain=WIN-NTNU-NO,password=$pw
-
+mount.cifs "//$server/$user" $homedir -w -o username=$user,domain=WIN-NTNU-NO,password=$pw,uid=$uid,gid=$gid
