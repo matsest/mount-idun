@@ -2,10 +2,13 @@
 
 > Mount home and work directories from the samba share at [Idun HPC cluster](https://www.hpc.ntnu.no/display/hpc/Idun+Cluster) at NTNU.
 
-This script mounts the home and work directories from Idun to your (Linux) computer, to allow for downloading and uploading your files (as an alternative to scp/sftp).
-To change permissions, mount points or samba server, please change the configuration variables in the script.
+This script mounts the home and work directories from Idun to your Linux computer, to allow for downloading and uploading your files (as an alternative to scp/sftp). The shares are by default mounted with read/write-permissions given to the default (non-root) user (uid `1000`), which allows for browsing the directories in your graphical file browser.
 
-Default mount points:
+### Configuration variables
+
+To change permissions, mount points or samba server, please change the configuration variables in the beginning of the script.
+
+Default mount points: (will be automatically created if they do not exist)
 
 * `/tmp/hpc-work` (lustre share)
 * `/tmp/hpc-home` (home directory)
@@ -14,11 +17,16 @@ Default samba server:
 
 * `idun-samba1.hpc.ntnu.no`(see up-to-date information on the samba share [here](https://www.hpc.ntnu.no/display/hpc/Transferring+Data))
 
-Default user/group: (check your id's with `id`)
+Default user/group: (check your values with the `id` command)
 
-* uid: 1000
-* gid: 1000
+* uid: `1000`
+* gid: `1000`
 
+
+## Install
+
+* Clone this repository: `git clone git@github.com:matsest/mount-idun.git`
+* Append the path to the repo to your `$PATH`: `echo 'export PATH=$PATH:<repo-dir-path>' >> ~/.bashrc`
 
 ## Usage
 
@@ -42,6 +50,7 @@ Default user/group: (check your id's with `id`)
   * Alternatively, use `sudo openconnect vpn.ntnu.no` in a terminal window to initiate a VPN connection. Enter username and password when prompted. To run in the background, use `sudo openconnect -b vpn.ntnu.no`
 * You might need to install dependency `cifs-utils` or similar to mount shares, depending on your Linux distro
   * Install with: `sudo apt install cifs-utils` (Debian/Ubuntu)
+* Only tested on Ubuntu 18.04
 
 ## Licence
 
