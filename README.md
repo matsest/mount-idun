@@ -38,7 +38,10 @@ Default user/group: (check your id's with `id`)
 
 * Script be executed with sudo (root) privileges to mount shares
 * You must be at NTNU campus or connected with VPN ([How-to](https://innsida.ntnu.no/wiki/-/wiki/English/Install+VPN)) 
-* You might need to install `cifs-utils` or similar, depending on your Linux distro
+  * Recommended: To add the VPN [natively to your network connections in your DE](https://grepitout.com/install-openconnect-ubuntu-vpn-client/) with [openconnect](http://www.infradead.org/openconnect/) (not using the Cisco AnyConnect GUI app): Execute `sudo apt install openconnect network-manager-openconnect network-manager-openconnect-gnome` (Ubuntu Gnome) and open Network settings to add `vpn.ntnu.no` and username/password. You can then initiate a VPN connection from your network settings in your task/status bar.
+  * Alternatively, use `sudo openconnect vpn.ntnu.no` in a terminal window to initiate a VPN connection. Enter username and password when prompted. To run in the background, use `sudo openconnect -b vpn.ntnu.no`
+* You might need to install dependency `cifs-utils` or similar to mount shares, depending on your Linux distro
+  * Install with: `sudo apt install cifs-utils` (Debian/Ubuntu)
 
 ## Licence
 
