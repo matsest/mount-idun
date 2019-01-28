@@ -2,7 +2,7 @@
 
 > Mount home and work directories from the samba share at [Idun HPC cluster](https://www.hpc.ntnu.no/display/hpc/Idun+Cluster) at NTNU.
 
-This script mounts the home and work directories from Idun to your Linux computer, to allow for downloading and uploading your files (as an alternative to scp/sftp). The shares are by default mounted with read/write-permissions given to the default (non-root) user (uid `1000`), which allows for browsing the directories in your graphical file browser.
+This script mounts the home and work directories from Idun to your Linux computer, to allow for downloading and uploading your files through CIFS (as an alternative to scp/sftp). The shares are by default mounted with read/write-permissions given to the default (non-root) user (uid `1000`), which allows for browsing the directories in your graphical file browser.
 
 ### Configuration variables
 
@@ -22,6 +22,9 @@ Default user/group: (check your values with the `id` command)
 * uid: `1000`
 * gid: `1000`
 
+NTNU subnet: (all known NTNU IP addresses begin with this value, including your own if you are connected at campus or through VPN)
+
+* 129.241
 
 ## Install
 
@@ -50,7 +53,8 @@ Default user/group: (check your values with the `id` command)
   * Alternatively, use `sudo openconnect vpn.ntnu.no` in a terminal window to initiate a VPN connection. Enter username and password when prompted. To run in the background, use `sudo openconnect -b vpn.ntnu.no`
 * You might need to install dependency `cifs-utils` or similar to mount shares, depending on your Linux distro
   * Install with: `sudo apt install cifs-utils` (Debian/Ubuntu)
-* Only tested on Ubuntu 18.04
+* Only tested on Ubuntu 18.0
+* Note: CIFS is by default not an encrypted protocol (unlike scp/sftp). It will transfer your data unencrypted.
 
 ## Licence
 

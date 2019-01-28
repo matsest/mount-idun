@@ -8,6 +8,7 @@ gid=1000                       # group id for user to get r/w permissions to mou
 workdir=/tmp/hpc-work          # mount point for work dir (lustre share on idun)
 homedir=/tmp/hpc-home          # mount point for home dir (home dir on idun)
 server=idun-samba1.hpc.ntnu.no # samba server
+ntnusubn='129.241'             # subnet for ntnu ip addresses
 
 if [ -n "$1" -a ! "$1" = "-u" ]; then
     echo "Usage: `basename $0` [option]"
@@ -50,7 +51,16 @@ if [ "$1" = "-u" ]; then
     exit
 fi
 
-echo "Reminder: You need to be at NTNU campus or use VPN to mount the shares!"
+# check for ntnu ip
+myip=`curl -4 ifconfig.co -s`
+
+if [ ! `echo $myip | grep $ntnusubn` ]; then
+        echo "Error: Your IP address is currently not identified as NTNU-based"
+        echo "You need to be at NTNU campus or use VPN to mount the shares."
+        echo
+        echo "Please try again after establishing a valid network connection. Exiting..."
+        exit
+fi
 
 read -p "Enter your NTNU username: " user
 read -s -p "Enter your NTNU password: " pw
